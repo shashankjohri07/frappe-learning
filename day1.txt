@@ -92,3 +92,72 @@ each app has own github repo.
 
 __________________________________________________________________________________________________________
 
+bulk data improt and export data ->
+
+Bahut useful topic uthaya hai 👍
+Chalo **Frappe/ERPNext** me **bulk data import/export** ka pura system samjhata hoon.
+
+---
+
+## 🔹 1. Bulk Data Import (Excel/CSV se)
+
+Aap data ko Excel ya CSV file ke through Doctype me import kar sakte ho.
+
+### Steps:
+
+1. Desk → **Data Import Tool** open karo.
+2. Doctype choose karo (e.g., Customer, Item, ya apna custom Doctype).
+3. “Download Template” button dabao → ek Excel/CSV template milega jisme required fields ke column already honge.
+4. Us template me apna data fill karo.
+5. Upload karo → aur Import chala do.
+
+👉 Agar data bahut bada hai (10k+ rows), to Frappe background job use karta hai (asynchronous import).
+
+---
+
+## 🔹 2. Bulk Data Export
+
+Aap existing data ko export karke Excel/CSV me le ja sakte ho.
+
+### Steps:
+
+1. Desk → Doctype list view open karo (e.g., Customer list).
+2. Upar right-side me **Menu (...) → Export** option choose karo.
+3. Fields select karo jo aap export karna chahte ho.
+4. Export file download ho jaayegi (Excel/CSV).
+
+---
+
+## 🔹 3. Programmatic Import/Export (for developers)
+
+Agar tum coding karna chahte ho:
+
+* **Export JSON**:
+
+  ```bash
+  bench --site sitename export-docs module_name
+  ```
+* **Import JSON/YAML**:
+
+  ```bash
+  bench --site sitename import-docs module_name
+  ```
+
+Aur agar tum Python se karna chaho to `frappe.get_doc()` aur `frappe.new_doc()` methods se bulk create/update kar sakte ho.
+
+---
+
+## 🔹 4. Real-world Examples
+
+* **Import**: Tumhare paas 5000 customers ka Excel hai → Data Import Tool se upload kar do.
+* **Export**: Tumhare manager ne bola “sab invoices ki CSV bhejo” → Doctype list view → Export.
+
+---
+
+⚡ In short:
+
+* **Import** = Data Import Tool (Excel/CSV template).
+* **Export** = Doctype List → Menu → Export.
+* **Devs ke liye** = `bench export-docs` / `import-docs` ya direct `frappe.get_doc()`.
+
+---
