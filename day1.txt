@@ -160,4 +160,46 @@ Aur agar tum Python se karna chaho to `frappe.get_doc()` aur `frappe.new_doc()` 
 * **Export** = Doctype List → Menu → Export.
 * **Devs ke liye** = `bench export-docs` / `import-docs` ya direct `frappe.get_doc()`.
 
----
+__________________________________________________________________________________________________________
+
+no-code rest api ,
+
+type -> http
+name -> driver list
+url -> http://irfan.cabs/api/v2/document/driver
+
+________________________________________________________________________________________________________
+
+
+🔹 Virtual Field in Frappe
+
+Virtual Field = aisa field jo database me store nahi hota, sirf runtime pe calculate ya render hota hai.
+
+🔹 Normal Field vs Virtual Field
+
+Normal Field:
+
+Database column hota hai (MariaDB/Postgres me).
+
+Har record ke saath persist hota hai.
+
+Example: first_name, phone_number.
+
+Virtual Field:
+
+Database me column nahi banta.
+
+Value runtime pe Python ya JS code se generate hoti hai.
+
+Example: full_name = first_name + " " + last_name.
+
+🔹 Use-cases
+
+Computed values → e.g. Net Total = Sum of Item totals.
+
+Display-only fields → e.g. Age (calculated from DOB).
+
+Temporary logic → values jo persist karne ki zarurat nahi.
+
+
+_______________________
