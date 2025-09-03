@@ -1,0 +1,84 @@
+Perfect 👌 tumne **Frappe Bench Architecture** ka diagram bheja hai. Chalo ise ekdum simple flow me samjhata hoon:
+
+---
+
+## 🔹 1. Bench Folder (outer wrapper)
+
+* Sab kuch ek **bench instance** ke andar hota hai.
+* Example: `bench-dev/`
+
+  * Ye tumhara workspace hai jisme **apps**, **sites**, **env**, **logs** rakhe hote hain.
+
+---
+
+## 🔹 2. Apps
+
+* `apps/` folder me sari apps hoti hain.
+* Example:
+
+  * `frappe` (framework itself)
+  * `erpnext` (business app built on frappe)
+  * `custom_app` (tumhari khud ki app)
+
+👉 Apps = Code + Doctypes + Logic.
+
+---
+
+## 🔹 3. Sites
+
+* `sites/` folder me har ek **site** ke liye alag folder banta hai.
+* Example:
+
+  * `frappe.io`
+  * `erpnext.com`
+  * `mysite.local`
+
+👉 Site = Database + Config + Installed Apps.
+
+* Har site ke andar ek `site_config.json` hota hai jo DB aur installed apps ka config rakhta hai.
+* Matlab ek hi apps ko multiple sites use kar sakti hain, lekin **data har site ka alag** hota hai.
+
+---
+
+## 🔹 4. Supporting Services
+
+Frappe ko chalane ke liye kuch aur cheezein background me chalte hain:
+
+* **Node** → front-end build aur realtime (socket.io) ke liye
+* **Werkzeug** → Python web server
+* **Redis** → caching + queue + realtime jobs
+* **Background Jobs** → asynchronous tasks (emails, schedulers)
+
+---
+
+## 🔹 5. Python Virtual Environment
+
+* Ye saari Python dependencies (Frappe, ERPNext, Libraries) ko isolate karta hai.
+* Matlab har bench apne alag env me chalega.
+
+---
+
+## 🔹 6. Database
+
+* **MariaDB / Postgres** → backend database jisme har site ka data store hota hai.
+* Ek site = ek database.
+
+---
+
+### ⚡ High-level relation (diagram ke hisaab se):
+
+* **Bench** = container (workspace)
+
+  * Inside Bench → `apps/` (code) + `sites/` (data + config)
+  * Sites **use** Apps (ek site me multiple apps ho sakte hain)
+  * Apps run hote hain **Python Env** ke andar, aur connect karte hain Redis, Node, Background Jobs se
+  * Final data store hota hai **MariaDB/Postgres** me
+
+---
+
+👉 Ek line me:
+**Apps = functionality/code, Sites = place where those apps are installed + data, Bench = environment that manages both.**
+
+---
+
+Bhai chaho to mai tumhare liye iska ek aur **apna banaya hua simplified drawing** bana ke de du taaki aur easily yaad ho jaye?
