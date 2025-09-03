@@ -82,3 +82,13 @@ Frappe ko chalane ke liye kuch aur cheezein background me chalte hain:
 ---
 
 Bhai chaho to mai tumhare liye iska ek aur **apna banaya hua simplified drawing** bana ke de du taaki aur easily yaad ho jaye?
+
+
+__________________________________________________________________________________________________________
+⚡ In short:
+bench new-app rental → ek nayi custom Frappe app create karta hai jiska naam rental hai.
+
+each app has own github repo.
+
+__________________________________________________________________________________________________________
+
